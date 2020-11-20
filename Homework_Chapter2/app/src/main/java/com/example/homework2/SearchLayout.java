@@ -1,16 +1,20 @@
 package com.example.homework2;
 
+import android.app.Activity;
 import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
 public class SearchLayout extends LinearLayout {
     private EditText mEditView;
+    private TextView mCancel;
 
     private OnSearchTextChangedListener mListener;
 
@@ -34,6 +38,7 @@ public class SearchLayout extends LinearLayout {
     public void init() {
         inflate(getContext(),R.layout.layout_search,this);//将layout_search.xml绑定在SearchLayout对象上
         mEditView = findViewById(R.id.input);
+        mCancel = findViewById(R.id.cancel);
         mEditView.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -52,7 +57,13 @@ public class SearchLayout extends LinearLayout {
                 }
             }
         });
+        mCancel.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((Activity) getContext()).finish();
 
+            }
+        });
     }
     public void setOnSearchTextChangedListener(OnSearchTextChangedListener listener){
         mListener = listener;
