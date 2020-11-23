@@ -1,6 +1,7 @@
 package com.example.chapter3.homework;
 
 import android.animation.AnimatorSet;
+import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.graphics.Color;
@@ -130,6 +131,18 @@ public class Ch3Ex2Activity extends AppCompatActivity {
 
         // 在这里实现了一个 ObjectAnimator，对 target 控件的背景色进行修改
         // 可以思考下，这里为什么要使用 ofArgb，而不是 ofInt 呢？
+        //通过ofArgb这个方法可以更容易地实现颜色演变，因为它里面封装了对ArgbEvaluator的使用
+        //如果是ofInt还要加入animator.setEvaluator(new ArgbEvaluator());如下：
+
+//        ObjectAnimator animator1 = ObjectAnimator.ofInt(target,
+//                "backgroundColor",
+//                getBackgroundColor(startColorPicker),
+//                getBackgroundColor(endColorPicker));
+//        animator1.setEvaluator(new ArgbEvaluator());
+//        animator1.setDuration(Integer.parseInt(durationSelector.getText().toString()));
+//        animator1.setRepeatCount(ObjectAnimator.INFINITE);
+//        animator1.setRepeatMode(ObjectAnimator.REVERSE);
+//        animator1.start();
         ObjectAnimator animator1 = ObjectAnimator.ofArgb(target,
                 "backgroundColor",
                 getBackgroundColor(startColorPicker),
