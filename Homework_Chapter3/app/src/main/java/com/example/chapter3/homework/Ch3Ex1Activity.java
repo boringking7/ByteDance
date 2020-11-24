@@ -1,12 +1,11 @@
 package com.example.chapter3.homework;
 
+import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
+import android.util.Log;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.ImageView;
 import android.widget.SeekBar;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -15,16 +14,11 @@ public class Ch3Ex1Activity extends AppCompatActivity {
     private LottieAnimationView animationView;
     private CheckBox loopCheckBox;
     private SeekBar seekBar;
-    private ImageView mImage;
-    private Animation loadAnimation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ch3ex1);
-//        //new Animation 和ImageView
-//        loadAnimation = AnimationUtils.loadAnimation(this,R.anim.alpha);
-//        mImage = findViewById(R.id.image_view);
 
         animationView = findViewById(R.id.animation_view);
         loopCheckBox = findViewById(R.id.loop_checkbox);
@@ -53,16 +47,26 @@ public class Ch3Ex1Activity extends AppCompatActivity {
                 // 提示2：SeekBar 的文档可以把鼠标放在 OnProgressChanged 中间，并点击 F1 查看，
                 // 或者到官网查询 https://developer.android.google.cn/reference/android/widget/SeekBar.OnSeekBarChangeListener.html#onProgressChanged(android.widget.SeekBar,%20int,%20boolean
 
+                //因为此处的progress为0-100，所以除以100来得到0-1
+                final float time = progress /  100f;
+                Integer i = progress ;
+                Log.d("进度",i.toString());
+                ValueAnimator animator = ValueAnimator.ofFloat(0f, 1f);
+                animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public void onAnimationUpdate(ValueAnimator animation) {
+                        animationView.setProgress(time);
+                    }
+                });
+                animator.start();//启动动画
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
             }
         });
     }

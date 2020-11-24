@@ -9,7 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,13 +18,13 @@
         </activity>
         <activity
             android:name=".Ch3Ex1Activity"
-            android:label="@string/ex1"></activity>
+            android:label="@string/ex1" />
         <activity
             android:name=".Ch3Ex2Activity"
-            android:label="@string/ex2"></activity>
+            android:label="@string/ex2" />
         <activity
             android:name=".Ch3Ex3Activity"
-            android:label="@string/ex3"></activity>
+            android:label="@string/ex3" />
     </application>
 
 </manifest>
